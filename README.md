@@ -13,10 +13,6 @@
 
 ## Steps to run the code
 - First download the images from the above mentioned websites. They are open-source so the images are freely available
-- The YOLO folder contains the source files to build the darkflow model. Darkflow is an implementation of the darknet model for tensorflow as created by thtrieu.
-- @article{trieu2018darkflow,
-  title={Darkflow},
-  author={Trieu, Trinh Hoang},
-  journal={GitHub Repository. Available online: https://github. com/thtrieu/darkflow (accessed on 14 February 2019)},
-  year={2018}
-}
+- The YOLO folder contains the source files to build the darkflow model. Darkflow is an implementation of the darknet model for tensorflow. Many thanks to Trieu and Trinh Hoang for the [Darkflow](https://github.com/thtrieu/darkflow) implementation that serves as a base model for this repo. 
+- The GLCM, Gabor and CLCM folder contain source files to extract the GLCM, Gabor and CLCM features for this study. They should be run on the MATLAB platform and were orignally run on MATLAB R2019a. 
+- Once the features are extracted, they are fused into the network as .mat files. 
