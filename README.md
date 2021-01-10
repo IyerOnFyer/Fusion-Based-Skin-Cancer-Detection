@@ -4,7 +4,7 @@
 > Dr. Ruban N
 > Tharun J Iyer
 > Dr. Alex Noel Joseph Raj
-> Dr. Vijayraghavan R
+> Dr. Vijayrajan R
 
 ## Introduction
 - This repository provides code for the research "_**A Dermoscopic Skin Lesion Classification Technique using YOLO-CNN and Traditional Feature Model**_"
