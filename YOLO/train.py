@@ -5,7 +5,8 @@ from ..yolo.misc import show
 import numpy as np
 import os
 import math
-
+import scipy.io.loadmat
+from sklearn.decomposition import PCA
 def expit_tensor(x):
 	return 1. / (1. + tf.exp(-x))
 
@@ -93,14 +94,19 @@ def loss(self, net_out):
     cooid = scoor * weight_coo
     weight_pro = tf.concat(C * [tf.expand_dims(confs, -1)], 3)
     proid = sprob * weight_pro
-
+	
     self.fetch += [_probs, confs, conid, cooid, proid]
     true = tf.concat([_coord, tf.expand_dims(confs, 3), _probs ], 3)
     wght = tf.concat([cooid, tf.expand_dims(conid, 3), proid ], 3)
-
+    glcm_mat=loadmat('Enter glcm feature file here')
+    gabor_mat=loadmat('Enter gabor feature file here')
+    clcm_mat=loadmat('Enter clcm feature file here')
+    pca_input=tf.concat(glcm_mat,gabor_mat,clcm_mat)
+    pca=PCA(n_components=7)
+    fcn=pca.fit(pca_input)
     print('Building {} loss'.format(m['model']))
     loss = tf.pow(adjusted_net_out - true, 2)
-    loss = tf.multiply(loss, wght)
+    loss = tf.multiply(loss, wght, fcn)
     loss = tf.reshape(loss, [-1, H*W*B*(4 + 1 + C)])
     loss = tf.reduce_sum(loss, 1)
     self.loss = .5 * tf.reduce_mean(loss)
